@@ -1,13 +1,26 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import '../App.css'; // Import the CSS for styling
+import { auth } from "../firebaseConfig";
 
+
+// eslint-disable-next-line react/prop-types
 function Comment({ blogId }) {
     const [content, setContent] = useState("");
 
-    const handleSubmit = (e) => {
+    const user = auth.currentUser;
+    if (!user) {
+        alert("Please Login");
+        return;
+    }
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios.post('http://localhost:5276/api/v1/blog/${blogId}/comment', { content, blogId })
+        const token = await user.getIdToken();
+        await axios.post('http://localhost:5276/api/v1/blog/' + blogId + '/comment', { content, blogId }, {
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            },
+        })
             .then(response => {
                 alert('Comment added!');
                 setContent('');

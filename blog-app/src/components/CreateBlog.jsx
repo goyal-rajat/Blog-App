@@ -1,21 +1,37 @@
 import React, { useState } from "react";
+import { auth } from "../firebaseConfig";
 import axios from "axios";
 
 
 function CreateBlog() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        axios
-            .post('http://localhost:5276/api/v1/blog', { title, content })
-            .then(response => {
-                alert('Post created');
-                setTitle(title);
-                setContent(content);
-            })
-            .catch(error => console.error(error));
+
+        const user = auth.currentUser;
+        if (!user) {
+            alert("Please Login");
+            return;
+        }
+        try {
+            const token = await user.getIdToken();
+            setLoading(true);
+            await axios.post('http://localhost:5276/api/v1/blog', { title, content }, {
+                headers: {
+                    'Authorization': 'Bearer ' + token,
+                 },
+            });
+            alert('Post created');
+            setTitle('');
+            setContent('');
+        }
+        catch (error) { console.error('', error); }
+        finally {
+            setLoading(false);
+        }
     };
     return (
         <div>

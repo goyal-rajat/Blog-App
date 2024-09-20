@@ -72,13 +72,13 @@
         border-radius: 5px;
         border: 1px solid #ccc;
         font-size: 14px;
-        color: white;
+        color: black;
     }
 
     .comment-form button {
         margin-top: 10px;
-        padding: 10px 20px;
-        background-color: #007bff;
+        padding: 12px;
+        background-color: #444;
         border: none;
         color: white;
         border-radius: 5px;
@@ -88,3 +88,59 @@
         .comment-form button:hover {
             background-color: #0056b3;
         }
+
+.create-post-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px; /* Space between the create post form and the blog list */
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    font-family: 'Arial', sans-serif;
+}
+
+    .create-post-container h2 {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+/* Input and Textarea Styling */
+input[type="text"], textarea {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+    transition: border 0.3s ease;
+    margin-bottom: 10px;
+}
+
+    input[type="text"]:focus, textarea:focus {
+        border-color: #007bff;
+        outline: none;
+    }
+
+/* Button Styling */
+button {
+    padding: 12px;
+    background-color: #444;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
