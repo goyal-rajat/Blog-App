@@ -1,3 +1,8 @@
+
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
 # Logs
 logs
 *.log
@@ -21,5 +26,4 @@ dist-ssr
 *.ntvs*
 *.njsproj
 *.sln
-*.sw?
 /.vs/Blog-App
